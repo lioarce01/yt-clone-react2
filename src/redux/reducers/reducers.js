@@ -10,10 +10,15 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 popular: action.payload
             }
-        case "GET_VIDEOS":
+        case "GET_SEARCHED_VIDEOS":
             return {
                 ...state,
                 videos: action.payload
+            }
+        case "GET_VIDEO_DETAIL":
+            return {
+                ...state,
+                videoDetail: action.payload
             }
         default:
             return state

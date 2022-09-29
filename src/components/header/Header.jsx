@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getPopularVideos, getVideos } from '../../redux/actions/actions'
 import './Header.css'
 import { IoSearchOutline } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 
 const Header = ({getPopularVideos, ...props}) => {
   const [input, setInput] = useState('')
@@ -44,7 +45,8 @@ const Header = ({getPopularVideos, ...props}) => {
       </nav>
       <div className='header'>
         <div className='popular'>
-          {props.popular.map((video, i) => (
+        {props.popular.map((video, i) => (
+          <Link to={`/video/${video.id.videoId}`} key={i}>
             <div key={i} className='video'>
               <div className='thumb'>
                 <img src={video.snippet.thumbnails.medium.url} alt="" />
@@ -57,6 +59,7 @@ const Header = ({getPopularVideos, ...props}) => {
                   <span className='video-channel-img'></span>
                 </div>
               </div>
+            </Link>
           ))}
           </div>
       </div>
@@ -66,7 +69,8 @@ const Header = ({getPopularVideos, ...props}) => {
 
 const mapStateToProps = (state) => {
   return {
-    popular: state.popular
+    popular: state.popular,
+    videos: state.videos
   }
 }
 
